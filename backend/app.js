@@ -1,7 +1,11 @@
-import express, { json } from "express";
-import 'dotenv/config';
+import express from "express";
+import "dotenv/config";
 import cors from "cors";
 import mongoose from "mongoose";
+import dns from "dns";
+import chatRoutes from "../backend/routes/chat.js"
+
+dns.setServers(["1.1.1.1", "8.8.8.8"]);
 
 const app = express();
 const port = 8000;
@@ -10,21 +14,23 @@ app.use(express.json());
 app.use(cors());
 
 
+app.use("/api", chatRoutes);
 
-app.listen(port, () => {
-    console.log("server running on port");
-    connectDB();
-})
+const startServer = async () => {
+  try {
+    await mongoose.connect(process.env.MONGODB_URI);
 
-const connectDB = async() =>{
-  console.log(process.env.MONGODB_URI);
-  try{
-    await mongoose.connect (process.env.MONGODB_URI);
-    console.log("connected to mongodb succesfully 👍");
-  }catch(err){
-    console.log(err, "failed to connect with mongodb ❌");
+    console.log("MongoDB Connected");
+
+    app.listen(port, () => {
+      console.log(`Server running on ${port}`);
+    });
+  } catch (err) {
+    console.error(err);
   }
-}
+};
+
+startServer();
 
 // app.post("/test", async (req, res) => {
 //   try {

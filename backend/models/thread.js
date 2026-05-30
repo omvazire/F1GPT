@@ -2,41 +2,41 @@ import { Type } from "@google/genai";
 import mongoose, { Schema } from "mongoose";
 
 const messageSchema = new mongoose.Schema({
-    role: {
-        Type: String,
-        enum: ["user", "assistant"],
-        required: true
-    },
-    content: {
-        Type:String,
-        required: true
-    },
-    timestamp: {
-        Type: Date,
-        default: Date.now
-    }
+  role: {
+    type: String,
+    enum: ["user", "assistant"],
+    required: true,
+  },
+  content: {
+    type: String,
+    required: true,
+  },
+  timestamp: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
 
 const threadSchema = new mongoose.Schema({
-    threadId:{
-        Type: String,
-        required: true,
-        unique: true
-    },
-    title:{
-        Type: String,
-        default: "New chat"
-    },
-    messages: [messageSchema],
-    createdAt:{
-        Type: Date,
-        default: Date.now
-    },
-    updatedAt: {
-        Type: Date,
-        default: Date.now
-    }
+  threadId: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  title: {
+    type: String,
+    default: "New chat",
+  },
+  messages: [messageSchema],
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
+  updatedAt: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
 
