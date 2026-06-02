@@ -2,6 +2,7 @@ import express from "express";
 import Thread from "../models/thread.js";
 import { error } from "console";
 import thread from "../models/thread.js";
+import getGemeniResponse from "../utils/gemeni.js";
 
 const router = express.Router();
 
@@ -32,7 +33,7 @@ router.get("/thread", async(req, res) => {
 
     }catch(err){
         console.log(err);
-        res.status[500].json({error: "failed to fetch threads"});
+        res.status(500).json({error: "failed to fetch threads"});
     }
 });
 
@@ -44,13 +45,13 @@ router.get("/thread/:threadId", async (req, res) => {
      const thread = await Thread.findOne({threadId});
 
      if(!thread){
-        res.status[404].json({error: "thread is not found"})
+      return res.status(404).json({error: "thread is not found"})
      }
      res.json(thread.messages);
 
     }catch(err){
         console.log(err);
-        res.status[500].json({error: "failed to fetch threads"});
+        res.status(500).json({error: "failed to fetch threads"});
     }
 });
 
@@ -68,8 +69,53 @@ router.delete("/thread/:threadId", async (req, res) => {
 
     }catch(err){
         console.log(err);
-        res.status[500].json({error: "failed to delete thread"});
+        res.status(500).json({error: "failed to delete thread"});
     }
 });
+
+router.post("/chat", async (req, res) => {
+    const {threadId, message} = req.body;
+
+    if(!threadId || !message) {
+        return res.status(400).json({error: "missing required fields"});
+    }
+    try{
+        let thread = await Thread.findOne({threadId});
+
+        if(!thread){
+            //create new thread
+            thread = new Thread({
+                threadId,
+                title: message,
+                messages: [{role: "user", content:message}]
+            });
+        }else {
+            thread.messages.push({role: "user", content: message});
+        }
+
+        const geminiMessages = thread.messages.map(msg => ({
+            role: msg.role === "assistant" ? "model" : "user",
+            parts: [
+        {
+            text: msg.content
+        }]
+}));
+
+       const assistantReply = await getGemeniResponse(geminiMessages);
+
+       thread.messages.push({role: "assistant", content: assistantReply});
+       thread.updatedAt = new Date();
+
+       await thread.save();
+       res.json({reply: assistantReply});
+
+
+    }catch(err){
+    console.log(err);
+
+    return res.status(500).json({
+        error: err.message
+    });
+}});
 
 export default router;
