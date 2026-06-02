@@ -10,8 +10,8 @@ const router = express.Router();
 router.post("/test", async(req, res) => {
     try{
         const thread = new Thread({
-            threadId: "xyz",
-            title: "hello world"
+            threadId: "abcd",
+            title: "verstappen"
         });
 
        const response =  await thread.save();
