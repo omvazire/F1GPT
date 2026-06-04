@@ -1,10 +1,13 @@
 import "./chat.css"
 
-function Chat(){
-    return{
-        <></>
-    }
+function Chat() {
+return (
+    <div>
+    
+    </div>
+)
 }
+
 
 
 export default Chat;
