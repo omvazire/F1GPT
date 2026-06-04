@@ -1,11 +1,20 @@
 import './App.css'
+import Sidebar from './sidebar.jsx';
+import ChatWindow from './chatWindow.jsx';
+import { MyContext } from './myContext.jsx';
 
 function App() {
+  const providerValues = {};
 
   return (
-    <>
-      
-    </>
+    <div className='app'>
+      <MyContext.Provider value={providerValues}>
+
+        <Sidebar></Sidebar>
+        <ChatWindow></ChatWindow>
+      </MyContext.Provider>
+
+    </div>
   )
 }
 
