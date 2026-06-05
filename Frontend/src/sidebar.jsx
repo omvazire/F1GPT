@@ -6,8 +6,8 @@ function Sidebar() {
       
 
     <button>
-      <img src="src/assets/f1logo.png" alt="f1 logo" />
-      <i className="fa-solid fa-pen-to-square"></i>
+      <img src="src/assets/f1logo.png" alt="f1 logo" className="logo"/>
+      <span><i className="fa-solid fa-pen-to-square"></i></span>
     </button>
 
 
@@ -20,7 +20,7 @@ function Sidebar() {
 
 
     <div className="sign">
-      <p>By Om_Vazire &hearts:</p>
+      <p>By Om_Vazire </p>
     </div>
 
     </section>
