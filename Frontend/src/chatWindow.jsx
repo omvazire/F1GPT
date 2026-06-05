@@ -5,10 +5,10 @@ function ChatWindow() {
   return (
     <div className="chatWindow">
          <div className="navbar">
-            <span>F1GPT &nbsp; <i class="fa-solid fa-angle-down"></i></span>
+            <span>F1GPT  <i class="fa-solid fa-angle-down"></i></span>
 
             <div className="userIconDiv">
-             <span>  <i class="fa-solid fa-user"></i> </span> 
+             <span className="userIcon">  <i class="fa-solid fa-user"></i> </span> 
             </div>
           </div>
 
@@ -17,10 +17,10 @@ function ChatWindow() {
 
 
          <div className="chatInput">
-          <div className="userInput">
+          <div className="inputBox">
             <input type="text" placeholder="Ask anything from F1"/>
 
-            <div id="submit"><i class="fa-solid fa-car-side"></i></div>
+            <div id="submit"><i class="fa-solid fa-circle-up"></i></div>
           </div>
 
           <p className="info">
