@@ -13,16 +13,16 @@ function Chat() {
     useEffect(() => {
         if(!prevChats?.length) return;
 
-        const content = reply.split(""); //hence each word
+        const content = reply.split(" "); //hence each word
 
         let idx = 0;
         const interval = setInterval(() => {
-            setLatestReply(content.slice(0, idx+1).join(""));
+            setLatestReply(content.slice(0, idx+1).join(" "));
 
             idx++;
             if(idx >= content.length) clearInterval(interval);
 
-        }, 10);
+        }, 40);
 
         return () => clearInterval(interval);
         
@@ -31,7 +31,7 @@ function Chat() {
 
 return (
 <>
-    {newChat && <h2>Start a new Chat !</h2>}
+    {newChat && <h2>Start a new Chat</h2>}
     <div className="chats">
 
         {
