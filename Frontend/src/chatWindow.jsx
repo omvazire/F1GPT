@@ -1,14 +1,45 @@
 import "./chatWindow.css";
 import Chat from "./chat.jsx"
+import { MyContext } from "./myContext.jsx";
+import { useContext } from "react";
 
 function ChatWindow() {
+
+  const {prompt, setPrompt, reply, setReply, currThreadId, setCurrThreadId} = useContext(MyContext);
+
+  const getReply = async () => {
+
+    console.log("message", prompt, "threadId", currThreadId);
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        message: prompt,
+        threadId: currThreadId
+      })
+    };
+
+    try{
+      const response = await fetch("http://localhost:8000/api/chat", options);
+      const res = await response.json();
+      console.log(res);
+      setReply(res.reply);
+
+    } catch (err) {
+      console.log(err);
+    }
+
+  }
+
   return (
     <div className="chatWindow">
          <div className="navbar">
-            <span>F1GPT  <i class="fa-solid fa-angle-down"></i></span>
+            <span>F1GPT  <i className="fa-solid fa-angle-down"></i></span>
 
             <div className="userIconDiv">
-             <span className="userIcon">  <i class="fa-solid fa-user"></i> </span> 
+             <span className="userIcon">  <i className="fa-solid fa-user"></i> </span> 
             </div>
           </div>
 
@@ -18,9 +49,10 @@ function ChatWindow() {
 
          <div className="chatInput">
           <div className="inputBox">
-            <input type="text" placeholder="Ask anything from F1"/>
+            <input type="text" placeholder="Ask anything related to F1" value={prompt} onChange={(e) => setPrompt(e.target.value)} onKeyDown={(e) => e.key === 'Enter'? getReply() : ''}/>
+              
 
-            <div id="submit"><i class="fa-solid fa-circle-up"></i></div>
+            <div id="submit" onClick={getReply}><i className="fa-solid fa-circle-up"></i></div>
           </div>
 
           <p className="info">
