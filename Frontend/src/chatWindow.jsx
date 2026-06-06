@@ -1,14 +1,16 @@
 import "./chatWindow.css";
 import Chat from "./chat.jsx"
 import { MyContext } from "./myContext.jsx";
-import { useContext } from "react";
+import { useContext, useState } from "react";
+import {PulseLoader} from "react-spinners"
 
 function ChatWindow() {
 
   const {prompt, setPrompt, reply, setReply, currThreadId, setCurrThreadId} = useContext(MyContext);
+  const [loading, setLoading] = useState(false);
 
   const getReply = async () => {
-
+    setLoading(true);
     console.log("message", prompt, "threadId", currThreadId);
     const options = {
       method: "POST",
@@ -30,7 +32,7 @@ function ChatWindow() {
     } catch (err) {
       console.log(err);
     }
-
+    setLoading(false);
   }
 
   return (
@@ -45,6 +47,8 @@ function ChatWindow() {
 
 
          <Chat></Chat>
+
+         <PulseLoader color="red" loading={loading}></PulseLoader>
 
 
          <div className="chatInput">
