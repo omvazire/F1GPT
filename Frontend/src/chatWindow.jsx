@@ -1,12 +1,12 @@
 import "./chatWindow.css";
 import Chat from "./chat.jsx"
 import { MyContext } from "./myContext.jsx";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import {PulseLoader} from "react-spinners"
 
 function ChatWindow() {
 
-  const {prompt, setPrompt, reply, setReply, currThreadId, setCurrThreadId} = useContext(MyContext);
+  const {prompt, setPrompt, reply, setReply, currThreadId, setCurrThreadId, prevChats, setPrevChats} = useContext(MyContext);
   const [loading, setLoading] = useState(false);
 
   const getReply = async () => {
@@ -34,6 +34,25 @@ function ChatWindow() {
     }
     setLoading(false);
   }
+
+    //append new chats to previous chats
+    useEffect(() => {
+        if(prompt && reply) {
+          setPrevChats(prevChats => (
+            [...prevChats, {
+              role: "user",
+              content: prompt
+            }, {
+              role: "assistant",
+              content: reply
+            }]
+          ));
+        }
+
+        setPrompt("");
+
+    }, [reply]);
+
 
   return (
     <div className="chatWindow">
