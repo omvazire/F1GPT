@@ -74,6 +74,7 @@ router.delete("/thread/:threadId", async (req, res) => {
 });
 
 router.post("/chat", async (req, res) => {
+    console.log("CHAT HIT");
     const {threadId, message} = req.body;
 
     if(!threadId || !message) {
@@ -98,7 +99,7 @@ router.post("/chat", async (req, res) => {
             parts: [
         {
             text: msg.content
-        }]
+        }]    
 }));
 
        const assistantReply = await getGemeniResponse(geminiMessages);
