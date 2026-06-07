@@ -22,7 +22,7 @@ function Chat() {
             idx++;
             if(idx >= content.length) clearInterval(interval);
 
-        }, 40);
+        }, 20);
 
         return () => clearInterval(interval);
         
