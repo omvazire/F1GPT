@@ -2,11 +2,11 @@ import "./chatWindow.css";
 import Chat from "./chat.jsx"
 import { MyContext } from "./myContext.jsx";
 import { useContext, useState, useEffect } from "react";
-import {PulseLoader} from "react-spinners"
+import { PulseLoader } from "react-spinners"
 
 function ChatWindow() {
 
-  const {prompt, setPrompt, reply, setReply, currThreadId, setCurrThreadId, prevChats, setPrevChats} = useContext(MyContext);
+  const { prompt, setPrompt, reply, setReply, currThreadId, setCurrThreadId, prevChats, setPrevChats } = useContext(MyContext);
   const [loading, setLoading] = useState(false);
 
   const getReply = async () => {
@@ -23,7 +23,7 @@ function ChatWindow() {
       })
     };
 
-    try{
+    try {
       const response = await fetch("http://localhost:8000/api/chat", options);
       const res = await response.json();
       console.log(res);
@@ -35,54 +35,54 @@ function ChatWindow() {
     setLoading(false);
   }
 
-    //append new chats to previous chats
-    useEffect(() => {
-        if(prompt && reply) {
-          setPrevChats(prevChats => (
-            [...prevChats, {
-              role: "user",
-              content: prompt
-            }, {
-              role: "assistant",
-              content: reply
-            }]
-          ));
-        }
+  //append new chats to previous chats
+  useEffect(() => {
+    if (prompt && reply) {
+      setPrevChats(prevChats => (
+        [...prevChats, {
+          role: "user",
+          content: prompt
+        }, {
+          role: "assistant",
+          content: reply
+        }]
+      ));
+    }
 
-        setPrompt("");
+    setPrompt("");
 
-    }, [reply]);
+  }, [reply]);
 
 
   return (
     <div className="chatWindow">
-         <div className="navbar">
-            <span>F1GPT  <i className="fa-solid fa-angle-down"></i></span>
+      <div className="navbar">
+        <span>F1GPT  <i className="fa-solid fa-angle-down"></i></span>
 
-            <div className="userIconDiv">
-             <span className="userIcon">  <i className="fa-solid fa-user"></i> </span> 
-            </div>
-          </div>
-
-
-         <Chat></Chat>
-
-         <PulseLoader color="red" loading={loading}></PulseLoader>
+        <div className="userIconDiv">
+          <span className="userIcon">  <i className="fa-solid fa-user"></i> </span>
+        </div>
+      </div>
 
 
-         <div className="chatInput">
-          <div className="inputBox">
-            <input type="text" placeholder="Ask anything related to F1" value={prompt} onChange={(e) => setPrompt(e.target.value)} onKeyDown={(e) => e.key === 'Enter'? getReply() : ''}/>
-              
+      <Chat></Chat>
 
-            <div id="submit" onClick={getReply}><i className="fa-solid fa-circle-up"></i></div>
-          </div>
+      <PulseLoader color="red" loading={loading}></PulseLoader>
 
-          <p className="info">
-              F1GPT can make mistakes. Check important info. See cookie preferences.
-            </p>
 
-         </div>
+      <div className="chatInput">
+        <div className="inputBox">
+          <input type="text" placeholder="Ask anything related to F1" value={prompt} onChange={(e) => setPrompt(e.target.value)} onKeyDown={(e) => e.key === 'Enter' ? getReply() : ''} />
+
+
+          <div id="submit" onClick={getReply}><i className="fa-solid fa-circle-up"></i></div>
+        </div>
+
+        <p className="info">
+          F1GPT can make mistakes. Check important info. See cookie preferences.
+        </p>
+
+      </div>
     </div>
   );
 }

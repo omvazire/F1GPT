@@ -1,4 +1,4 @@
-.chats{
+.chats {
     width: 100%;
     max-width: 700px;
     margin: auto;
@@ -6,18 +6,18 @@
     overflow-y: auto;
 }
 
-.userDiv{
+.userDiv {
     display: flex;
     justify-content: flex-end;
     font-size: 0.9rem;
 }
 
-.gptDiv{
+.gptDiv {
     text-align: left;
     font-size: 0.9rem;
 }
 
-.userMessage{
+.userMessage {
     background-color: #323232;
     padding: 10px 20px;
     border-radius: 14px;
@@ -31,9 +31,10 @@
 }
 
 pre {
-     white-space: pre-wrap;
-     background: #1a1a1a;
-     border-left: 2px solid #e10600; /* F1 red */
-     border-radius: 10px;
-     padding: 16px;
+    white-space: pre-wrap;
+    background: #1a1a1a;
+    border-left: 2px solid #e10600;
+    /* F1 red */
+    border-radius: 10px;
+    padding: 16px;
 }

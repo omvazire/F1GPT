@@ -1,4 +1,4 @@
-import {GoogleGenAI} from '@google/genai';
+import { GoogleGenAI } from '@google/genai';
 
 const getGemeniResponse = async (messages) => {
 
@@ -22,11 +22,11 @@ const getGemeniResponse = async (messages) => {
 
     const data = await response.json();
 
-if (data.error) {
-  throw new Error(data.error.message);
-}
+    if (data.error) {
+      throw new Error(data.error.message);
+    }
 
-return data.candidates[0].content.parts[0].text;
+    return data.candidates[0].content.parts[0].text;
 
   } catch (err) {
     console.log(err);
