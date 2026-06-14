@@ -101,8 +101,45 @@ router.post("/chat", async (req, res) => {
                     text: msg.content
                 }]
         }));
+const systemPrompt = {
+    role: "user",
+    parts: [
+        {
+            text: `
+You are F1GPT, a specialized Formula 1 AI assistant.
 
-        const assistantReply = await getGemeniResponse(geminiMessages);
+Only answer questions related to Formula 1.
+
+Allowed topics:
+- Drivers
+- Teams
+- Constructors
+- Circuits
+- Race weekends
+- Championships
+- Regulations
+- Technical analysis
+- Race strategy
+- Historical Formula 1 events
+
+For any non-F1 question reply exactly:
+
+"Sorry, I am F1GPT and can only assist with Formula 1 related topics."
+
+Do not answer non-Formula 1 questions.
+
+Keep answers concise, accurate and easy to read.
+`
+        }
+    ]
+};
+
+const finalMessages = [
+    systemPrompt,
+    ...geminiMessages
+];
+
+const assistantReply = await getGemeniResponse(finalMessages);
 
         thread.messages.push({ role: "assistant", content: assistantReply });
         thread.updatedAt = new Date();
