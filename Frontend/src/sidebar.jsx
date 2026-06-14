@@ -2,6 +2,7 @@ import "./sidebar.css";
 import { useContext, useEffect } from "react";
 import { MyContext } from "./myContext.jsx";
 import { v1 as uuidv1 } from "uuid";
+import logo from "../assets/F1-01.png";
 
 function Sidebar() {
 
@@ -10,7 +11,7 @@ function Sidebar() {
   const getAllThreads = async () => {
 
     try {
-      const response = await fetch("http://localhost:8000/api/thread");
+      const response = await fetch("https://f1gpt.onrender.com/api/thread");
       const res = await response.json();
 
       const filteredData = res.map(thread => ({ threadId: thread.threadId, title: thread.title }));
@@ -43,7 +44,7 @@ function Sidebar() {
 
 
       try{  
-        const response = await fetch(`http://localhost:8000/api/thread/${newThreadId}`);
+        const response = await fetch(`https://f1gpt.onrender.com/api/thread/${newThreadId}`);
         const res = await response.json();
         console.log(res);
         setPrevChats(res);
@@ -58,7 +59,7 @@ function Sidebar() {
 
 const deleteThread = async (threadId) => {
   try{
-    const response =await fetch(`http://localhost:8000/api/thread/${threadId}`,{method: "DELETE"});
+    const response =await fetch(`https://f1gpt.onrender.com/api/thread/${threadId}`,{method: "DELETE"});
     const res = await response.json();
     console.log(res);
 
@@ -79,7 +80,7 @@ const deleteThread = async (threadId) => {
 
 
       <button onClick={createNewChat}>
-        <img src="src/assets/F1-01.png" alt="f1 logo" className="logo" />
+        <img src={logo} alt="f1 logo" className="logo" />
         <span><i className="fa-solid fa-pen-to-square"></i></span>
       </button>
 
