@@ -55,6 +55,25 @@ function Sidebar() {
       }
   }
 
+
+const deleteThread = async (threadId) => {
+  try{
+    const response =await fetch(`http://localhost:8000/api/thread/${threadId}`,{method: "DELETE"});
+    const res = await response.json();
+    console.log(res);
+
+    //rerender list after delete
+    setAllThreads(prev => prev.filter(thread => thread.threadId != threadId));
+
+    if(threadId === currThreadId){
+      createNewChat();
+    }
+
+  }catch(err){
+    console.log(err);
+  }
+}
+
   return (
     <section className="sidebar">
 
@@ -69,7 +88,13 @@ function Sidebar() {
       <ul className="history">
         {
           allThreads?.map((thread, idx) => (
-            <li key={idx} onClick={(e) => changeThread(thread.threadId)}>{thread.title}</li>
+            <li key={idx} onClick={(e) => changeThread(thread.threadId)}>
+            {thread.title}
+            <i className="fa-solid fa-trash-can" onClick={(e) => {
+              e.stopPropagation(); //to stop event bubling (when delete clicked the list is also getting clicked so to fix that)
+              deleteThread(thread.threadId);
+            }}></i>
+            </li>
           ))
         }
 
