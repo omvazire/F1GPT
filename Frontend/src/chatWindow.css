@@ -23,7 +23,7 @@
     z-index: 10;
 }
 
-.navbar span {
+.navbar > span {
     font-family: var(--font-mono);
     font-weight: 700;
     font-size: 16px;
@@ -34,7 +34,7 @@
     cursor: pointer;
 }
 
-.navbar span::after {
+.navbar > span::after {
     content: '';
     display: inline-block;
     width: 6px;
