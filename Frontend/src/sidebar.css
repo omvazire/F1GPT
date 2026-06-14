@@ -1,87 +1,133 @@
 .sidebar {
-    background-color: #171717;
-    color: #b4b4b4;
+    background-color: var(--color-bg-sidebar);
+    color: var(--color-text-muted);
     height: 100vh;
-    width: 320px;
+    width: 280px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    border-right: 1px solid var(--color-border);
+    flex-shrink: 0;
 }
 
+/* New Chat Button */
 button {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 10px;
-    padding: 10px;
-    border-radius: 7px;
-    background-color: transparent;
-    border: solid 0.5px rgba(255, 255, 255, 0.5);
+    margin: 16px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-border);
     cursor: pointer;
+    transition: var(--transition-smooth);
 }
 
 .logo {
-    height: 25px;
-    width: 25px;
-    background-color: white;
-    border-radius: 50%;
-    object-fit: cover;
-
+    height: 28px;
+    width: auto;
+    max-width: 80px;
+    object-fit: contain;
+    background-color: transparent;
+    border-radius: 0;
+    filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.5));
 }
 
-button span {
-    font-size: 20px;
+button span i {
+    font-size: 16px;
+    color: var(--color-text-muted);
+    transition: var(--transition-smooth);
 }
-
 
 button:hover {
-    background-color: rgba(180, 180, 180, 0.05);
-
+    background-color: #242424;
+    border-color: var(--color-primary);
 }
 
+button:hover span i {
+    color: var(--color-primary);
+}
+
+/* History List */
 .history {
-    margin: 10px;
-    padding: 10px;
+    margin: 0;
+    padding: 8px 16px;
     height: 100%;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
 }
 
 .history li {
     list-style-type: none;
     cursor: pointer;
-    padding: 2px 5px;
-    margin-bottom: 0.3rem;
+    padding: 10px 40px 10px 14px; /* Reserved space on right for delete icon */
+    border-radius: 6px;
     font-size: 14px;
-    border: solid 10px transparent;
     position: relative;
-
+    display: block; /* block layout so ellipsis works correctly */
+    background-color: transparent;
+    border-left: 2px solid transparent;
+    transition: var(--transition-smooth);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--color-text-muted);
 }
 
 .history li:hover {
-    background-color: rgba(180, 180, 180, 0.05);
-    border-radius: 10px;
-
+    background-color: rgba(255, 255, 255, 0.03);
+    color: var(--color-text-main);
 }
 
-.sign {
-    margin: 10px;
-    padding: 10px;
-    font-size: 14px;
-    text-align: center;
-    border-top: solid 0.25px rgba(255, 255, 255, 0.5);
+/* Active Thread Highlight */
+.history li.active {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--color-text-main);
+    border-left: 2px solid var(--color-primary);
+    font-weight: 500;
 }
 
-.fa-trash-can{
-    opacity: 0;
+/* Delete Button */
+.fa-trash-can {
     position: absolute;
-    right: 0;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: var(--transition-smooth);
+    font-size: 13px;
+    color: var(--color-text-muted);
+    padding: 6px;
+    border-radius: 4px;
 }
 
-.history li:hover .fa-trash-can{
+.history li:hover .fa-trash-can {
+    opacity: 0.6;
+}
+
+.history li:hover .fa-trash-can:hover {
     opacity: 1;
-    color: #fff;
-
+    color: var(--color-primary) !important;
+    background-color: rgba(225, 6, 0, 0.1);
 }
 
-.fa-trash-can:hover{
-    color: #f81717 !important;
+/* Footer / Signature */
+.sign {
+    margin: 16px;
+    padding-top: 16px;
+    font-size: 11px;
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: center;
+    border-top: 1px solid var(--color-border);
+    color: var(--color-text-muted);
+    opacity: 0.8;
 }
+
+.sign p {
+    color: var(--color-text-muted);
+}

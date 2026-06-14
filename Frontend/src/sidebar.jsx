@@ -79,7 +79,7 @@ const deleteThread = async (threadId) => {
 
 
       <button onClick={createNewChat}>
-        <img src="src/assets/f1logo.png" alt="f1 logo" className="logo" />
+        <img src="src/assets/F1-01.png" alt="f1 logo" className="logo" />
         <span><i className="fa-solid fa-pen-to-square"></i></span>
       </button>
 
@@ -88,7 +88,7 @@ const deleteThread = async (threadId) => {
       <ul className="history">
         {
           allThreads?.map((thread, idx) => (
-            <li key={idx} onClick={(e) => changeThread(thread.threadId)}>
+            <li key={idx} className={thread.threadId === currThreadId ? "active" : ""} onClick={(e) => changeThread(thread.threadId)} title={thread.title}>
             {thread.title}
             <i className="fa-solid fa-trash-can" onClick={(e) => {
               e.stopPropagation(); //to stop event bubling (when delete clicked the list is also getting clicked so to fix that)

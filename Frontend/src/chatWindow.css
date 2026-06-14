@@ -1,5 +1,5 @@
 .chatWindow {
-    background-color: #212121;
+    background-color: var(--color-bg-main);
     height: 100vh;
     width: 100%;
     display: flex;
@@ -7,99 +7,167 @@
     justify-content: space-between;
     align-items: center;
     text-align: center;
+    position: relative;
 }
 
-/* navbar */
-
+/* Navbar */
 .navbar {
     width: 100%;
+    height: 60px;
+    background-color: var(--color-bg-sidebar);
+    border-bottom: 1px solid var(--color-border);
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 0 24px;
+    z-index: 10;
 }
 
 .navbar span {
-    margin: 1rem 2rem;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 1.5px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+}
+
+.navbar span::after {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background-color: var(--color-primary);
+    border-radius: 50%;
 }
 
 .userIconDiv {
-    margin: 1rem 2rem;
+    margin: 0;
 }
 
 .fa-angle-down {
-    margin-left: 3px;
+    margin-left: 4px;
+    font-size: 12px;
+    color: var(--color-text-muted);
 }
 
 .userIcon {
-    background-color: #339cff;
-    height: 25px;
-    width: 25px;
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    height: 32px;
+    width: 32px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    transition: var(--transition-smooth);
 }
 
+.userIcon:hover {
+    border-color: var(--color-primary);
+    background-color: #242424;
+}
 
-/* chat input */
+.userIcon i {
+    font-size: 13px;
+    color: var(--color-text-muted);
+}
 
-.chatInput {
-    width: 100%;
+.userIcon:hover i {
+    color: var(--color-text-main);
+}
+
+/* Pulse Loader Spacing */
+.chatWindow .PulseLoader {
+    margin: 12px 0;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+/* Chat Input Container */
+.chatInput {
+    width: 100%;
+    max-width: 920px;
+    padding: 0 24px 18px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 5;
+    background: linear-gradient(180deg, transparent 0%, var(--color-bg-main) 30%);
 }
 
 .inputBox {
     width: 100%;
     position: relative;
-    max-width: 700px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    background-color: var(--color-bg-input);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    transition: var(--transition-smooth);
+}
+
+.inputBox:focus-within {
+    border-color: rgba(225, 6, 0, 0.4);
+    box-shadow: 0 0 12px rgba(225, 6, 0, 0.12), 0 4px 20px rgba(0, 0, 0, 0.4);
 }
 
 input {
     width: 100%;
     border: none;
-    background-color: rgba(255, 255, 255, 0.05);
-    padding: 20px;
-    font-size: 0.8rem;
-    border-radius: 14px;
-
-    box-shadow: rgba(0, 0, 0, 0.05) 0 54px 55px,
-        rgba(0, 0, 0, 0.05) 0 -12px 30px,
-        rgba(0, 0, 0, 0.05) 0 4px 6px,
-        rgba(0, 0, 0, 0.05) 0 12px 3px,
-        rgba(0, 0, 0, 0.05) 0 -3px 5px;
+    background: transparent;
+    padding: 16px 60px 16px 18px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--color-text-main);
+    box-shadow: none;
 }
-
 
 input:focus {
     outline: none;
 }
 
+input::placeholder {
+    color: var(--color-text-muted);
+    opacity: 0.7;
+}
+
 #submit {
     cursor: pointer;
-    height: 35px;
-    width: 35px;
-    font-size: 20px;
+    height: 32px;
+    width: 32px;
     position: absolute;
-    right: 15px;
+    right: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: 8px;
+    transition: var(--transition-smooth);
 }
 
-#submit i:hover {
-    color: #fff;
+#submit i {
+    font-size: 26px;
+    color: var(--color-primary);
+    transition: var(--transition-smooth);
+    opacity: 0.9;
+}
+
+#submit:hover i {
+    color: #ff1e17;
+    transform: scale(1.08);
+    opacity: 1;
 }
 
 .info {
-    font-size: 0.8rem;
-    padding: 0.5rem;
-    color: #b4b4b4;
-    font-style: italic;
-}
+    font-size: 11px;
+    color: var(--color-text-muted);
+    letter-spacing: 0.2px;
+    line-height: 1.4;
+    text-align: center;
+    margin: 0;
+}

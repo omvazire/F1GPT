@@ -1,14 +1,93 @@
-*{
-  color: #ececec;
-  font-family: Roboto, 'Open Sans', 'Helvetica Neue', sans-serif;
+:root {
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: 'Orbitron', monospace;
+  --color-primary: #E10600;
+  --color-bg-main: #0D0D0D;
+  --color-bg-sidebar: #131313;
+  --color-bg-card: #1A1A1A;
+  --color-bg-input: #151515;
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-hover: rgba(255, 255, 255, 0.16);
+  --color-text-main: #F5F5F7;
+  --color-text-muted: #A0A0A2;
+  --transition-smooth: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-body{
+* {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  color: var(--color-text-main);
+  font-family: var(--font-sans);
 }
 
-.app{
-  background-color: #212121;
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-bg-main);
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.app {
+  background-color: var(--color-bg-main);
   display: flex;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+/* Custom Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .app {
+    flex-direction: column;
+  }
+  .sidebar {
+    width: 100% !important;
+    height: 60px !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    border-right: none !important;
+    border-bottom: 1px solid var(--color-border);
+    padding: 0 16px !important;
+    justify-content: space-between !important;
+  }
+  .sidebar button {
+    margin: 0 !important;
+    padding: 8px 12px !important;
+  }
+  .sidebar .history,
+  .sidebar .sign {
+    display: none !important;
+  }
+  .chatWindow {
+    height: calc(100vh - 60px) !important;
+  }
+  .chats {
+    padding: 16px !important;
+  }
+  .userMessage,
+  .gptDiv {
+    max-width: 90% !important;
+  }
 }
