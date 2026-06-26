@@ -1,34 +1,35 @@
 ````markdown
-# 🏁 F1GPT
+# F1GPT
 
-> **An AI-powered Formula 1 & Motorsport chatbot built using the MERN Stack and Google Gemini API.**
+F1GPT is an AI-powered full-stack web application built for Formula 1 and motorsport enthusiasts. It allows users to ask questions related to Formula 1, Formula 2, Formula 3, Formula E, WEC, FIA regulations, drivers, teams, race weekends, championships, technical analysis, and motorsport comparisons using Google's Gemini AI.
 
-F1GPT is a full-stack AI web application that allows users to ask questions about Formula 1 and the wider world of FIA motorsport. The project combines modern full-stack development with Generative AI to deliver an interactive motorsport assistant.
+The main goal of this project was to understand how to integrate a Large Language Model (LLM) into a full-stack application while learning backend development, API integration, database management, deployment, and prompt engineering.
 
-## 🌐 Live Demo
+## Live Demo
 
-🔗 https://f1gpt-1.onrender.com/
-
----
-
-## ✨ Features
-
-- 🏎️ Ask questions related to Formula 1 and motorsport
-- 🤖 AI-powered responses using Google Gemini API
-- 💬 Continue previous conversations
-- 📝 Chat history stored in MongoDB
-- 🗑️ Delete old conversations
-- 📖 Markdown formatted AI responses
-- ⚡ Word-by-word response rendering
-- 🎨 Custom Formula 1 themed UI
-- 📱 Responsive interface
-- 🚀 Fully deployed using Render
+https://f1gpt-1.onrender.com/
 
 ---
 
-## 🛠️ Tech Stack
+## Features
+
+- Ask questions related to Formula 1 and the wider world of motorsport.
+- AI-generated responses using Google Gemini API.
+- Stores conversation history in MongoDB.
+- Continue previous conversations.
+- Delete previous conversations.
+- Markdown formatted AI responses.
+- Word-by-word response rendering for a better chat experience.
+- Custom Formula 1 inspired user interface.
+- Responsive design.
+- Fully deployed on Render.
+
+---
+
+## Technologies Used
 
 ### Frontend
+
 - React
 - Vite
 - CSS
@@ -36,37 +37,41 @@ F1GPT is a full-stack AI web application that allows users to ask questions abou
 - Highlight.js
 
 ### Backend
+
 - Node.js
 - Express.js
 
 ### Database
+
 - MongoDB Atlas
 - Mongoose
 
 ### AI
+
 - Google Gemini API
 
 ### Deployment
+
 - Render
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
-```text
-F1GPT/
+```
+F1GPT
 │
-├── Backend/
-│   ├── models/
-│   ├── routes/
-│   ├── utils/
+├── Backend
+│   ├── models
+│   ├── routes
+│   ├── utils
 │   ├── app.js
 │   └── ...
 │
-├── Frontend/
-│   ├── src/
-│   ├── public/
-│   ├── assets/
+├── Frontend
+│   ├── src
+│   ├── public
+│   ├── assets
 │   └── ...
 │
 └── README.md
@@ -74,7 +79,7 @@ F1GPT/
 
 ---
 
-## 🚀 Getting Started
+## Installation
 
 ### Clone the repository
 
@@ -82,25 +87,29 @@ F1GPT/
 git clone https://github.com/omvazire/F1GPT.git
 ```
 
-### Install dependencies
+Move into the project directory.
 
-Backend
+```bash
+cd F1GPT
+```
+
+---
+
+## Backend Setup
+
+Navigate to the backend folder.
 
 ```bash
 cd Backend
-npm install
 ```
 
-Frontend
+Install dependencies.
 
 ```bash
-cd Frontend
 npm install
 ```
 
-### Configure Environment Variables
-
-Create a `.env` file inside the **Backend** folder.
+Create a `.env` file and add the following environment variables.
 
 ```env
 MONGO_URI=your_mongodb_connection_string
@@ -108,68 +117,82 @@ GEMINI_API_KEY=your_gemini_api_key
 PORT=8000
 ```
 
-### Run the Backend
+Start the backend server.
 
 ```bash
-cd Backend
 npm start
 ```
 
-### Run the Frontend
+---
+
+## Frontend Setup
+
+Navigate to the frontend folder.
 
 ```bash
 cd Frontend
+```
+
+Install dependencies.
+
+```bash
+npm install
+```
+
+Run the development server.
+
+```bash
 npm run dev
 ```
 
 ---
 
-## 🎯 What I Learned
+## What I Learned
 
-While building F1GPT, I gained practical experience with:
+This project helped me gain hands-on experience with:
 
 - Full-stack application development
-- Google Gemini API integration
-- Prompt Engineering
 - REST API development
+- Google Gemini API integration
+- Prompt engineering
 - MongoDB database management
 - React state management
 - Backend and frontend communication
+- Markdown rendering
 - Deployment using Render
-- Uptime monitoring
+- Monitoring deployed applications with UptimeRobot
 
 ---
 
-## 📌 Current Limitations
+## Current Limitations
 
-- No user authentication (Login/Signup)
-- Shared chat history (single database)
-- No token/account management
+- No user authentication (Login/Signup).
+- Shared chat history since authentication has not been implemented.
+- No user-specific conversation storage.
+- No token or account management.
 
-These features are intentionally left for future updates as the primary goal of this project was learning AI integration in a full-stack application.
-
----
-
-## 🔮 Future Improvements
-
-- User Authentication
-- Personal Chat History
-- User Profiles
-- Better AI Prompt Controls
-- Streaming Responses
-- Conversation Search
-- Dark/Light Theme
-- Additional Motorsport Categories
+These features can be added in future updates.
 
 ---
 
-## 📄 License
+## Future Improvements
 
-This project is open-source and available under the MIT License.
+- User Login and Signup
+- Individual chat history for every user
+- Conversation search
+- Streaming AI responses
+- Better prompt optimization
+- More motorsport categories
+- User profiles
+- Performance optimization
 
 ---
 
-## 👨‍💻 Author
+## Author
 
-**Om Vazire**
-```
+Om Vazire
+
+GitHub: https://github.com/omvazire
+
+LinkedIn: https://www.linkedin.com/in/omvazire/
+````
